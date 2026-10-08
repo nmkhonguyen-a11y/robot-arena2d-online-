@@ -1,0 +1,19 @@
+# Cấu hình tự động cho Render.com (New > Blueprint, chọn repo này)
+services:
+  - type: web
+    name: mech-arena-2d
+    runtime: node
+    plan: free                # gói miễn phí: server "ngủ" khi không ai dùng, tài khoản KHÔNG được giữ lại khi khởi động lại
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      # Muốn giữ tài khoản lâu dài: đổi plan thành "starter", bỏ dấu # ở các dòng dưới
+      # - key: DATA_DIR
+      #   value: /var/data
+    # disk:
+    #   name: data
+    #   mountPath: /var/data
+    #   sizeGB: 1
